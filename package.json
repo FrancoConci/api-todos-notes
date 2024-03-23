@@ -1,11 +1,8 @@
 {
-  "name": "api-todos-notes",
+  "name": "@francoconci/api-todos-notes",
   "version": "1.0.0",
   "description": "Api specification and types to use with todos-notes app.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Franco Conci",
   "license": "ISC"
 }
