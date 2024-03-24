@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "todo",
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "info": {
+    "contact": {
+      "name": "Franco",
+      "email": "franco1conci@gmail.com",
+      "url": "https://www.linkedin.com/in/franco-conci/"
+    },
+    "version": "0.0.3",
+    "title": "Todo api",
+    "description": "### Introduction\n  Endpoints specifications and data structures for Todo API\\\n"
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "login response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/loginResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "User get by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "description": "user id"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "token",
+            "schema": {
+              "type": "string",
+              "description": "token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user get by id response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/userGetResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "errorResponse": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "unique identifier"
+          },
+          "message": {
+            "type": "string",
+            "description": "error message"
+          }
+        },
+        "required": ["code", "message"]
+      },
+      "loginRequest": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "user name"
+          },
+          "password": {
+            "type": "string",
+            "description": "password"
+          }
+        },
+        "required": ["username", "password"]
+      },
+      "loginResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "auth token"
+          }
+        },
+        "required": ["token"]
+      },
+      "userGetResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "user id"
+          },
+          "username": {
+            "type": "string",
+            "description": "username"
+          }
+        },
+        "required": ["id", "username"]
+      }
+    }
+  }
+}
