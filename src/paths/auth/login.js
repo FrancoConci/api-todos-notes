@@ -1,7 +1,7 @@
-import { jsonRequest } from '../../openapiUtils/jsonRequest';
-import { jsonResponse } from '../../openapiUtils/jsonResponse';
-import { loginRequest } from '../../schemas/auth/loginRequest';
-import { loginResponse } from '../../schemas/auth/loginResponse';
+import { jsonRequest } from '../../openapiUtils/jsonRequest.js';
+import { jsonResponse } from '../../openapiUtils/jsonResponse.js';
+import { loginRequest } from '../../schemas/auth/loginRequest.js';
+import { loginResponse } from '../../schemas/auth/loginResponse.js';
 
 export const login = {
   post: {

@@ -1,6 +1,6 @@
-import { jsonResponse } from '../../openapiUtils/jsonResponse';
-import { token } from '../../schemas/auth/loginResponse';
-import { user } from '../../schemas/user/user';
+import { jsonResponse } from '../../openapiUtils/jsonResponse.js';
+import { token } from '../../schemas/generic/auth.js';
+import { user } from '../../schemas/user/user.js';
 
 export const userGet = {
   get: {
@@ -10,7 +10,9 @@ export const userGet = {
       {
         in: 'path',
         name: 'id',
-        schema: user.properties.id,
+        schema: {
+          properties: { id: user.properties.id },
+        },
         required: true,
       },
       {

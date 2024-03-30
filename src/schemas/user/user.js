@@ -5,7 +5,6 @@ export const user = {
     id: {
       description: 'user id in uuid format',
       type: 'string',
-      length: 12,
       pattern:
         '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$',
       errorMessages: {

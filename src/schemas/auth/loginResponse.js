@@ -1,7 +1,10 @@
-import token from '../generic/auth';
+import { token } from '../generic/auth.js';
 
 export const loginResponse = {
-  token,
+  type: 'object',
+  properties: {
+    token,
+  },
   required: ['token'],
   additionalProperties: false,
   errorMessages: {
