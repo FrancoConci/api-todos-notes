@@ -8,5 +8,8 @@
   },
   "main": "index.js",
   "author": "Franco Conci",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "json-schema-to-typescript": "^13.1.2"
+  }
 }
