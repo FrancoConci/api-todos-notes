@@ -1,8 +1,16 @@
 {
   "name": "@francoconci/api-todos-notes",
+  "type": "module",
   "version": "1.0.0",
   "description": "Api specification and types to use with todos-notes app.",
+  "scripts": {
+    "generate": "node src/index.js"
+  },
   "main": "index.js",
   "author": "Franco Conci",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "4.1.0",
+    "json-schema-to-typescript": "13.1.2"
+  }
 }

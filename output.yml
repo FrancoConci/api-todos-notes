@@ -1,0 +1,148 @@
+openapi: 3.0.0
+servers:
+  - description: todo
+    url: http://localhost:3000/
+info:
+  contact:
+    name: Franco
+    email: franco1conci@gmail.com
+    url: https://www.linkedin.com/in/franco-conci/
+  version: 0.0.3
+  title: Todo api
+  description: |
+    ### Introduction
+      Endpoints specifications and data structures for Todo API\
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: User login
+      requestBody:
+        description: login request
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  description: user name
+                  type: string
+                  minLength: 3
+                  maxLength: 15
+                  pattern: ^([A-Za-z0-9!?_]){3,15}$
+                password:
+                  description: password
+                  type: string
+                  minLength: 8
+                  maxLength: 15
+                  pattern: >-
+                    ^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!?#_&@]).{8,15}$
+              required:
+                - username
+                - password
+              additionalProperties: false
+      responses:
+        '200':
+          description: login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    description: jwt token returned when authenticating successfully
+                    type: string
+                required:
+                  - token
+                additionalProperties: false
+        '400':
+          description: malformed request
+        '401':
+          description: unauthorized
+        '500':
+          description: server error
+  /users/{id}:
+    get:
+      tags:
+        - User
+      summary: User get by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            properties:
+              id:
+                description: user id in uuid format
+                type: string
+                pattern: >-
+                  ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+          required: true
+        - in: header
+          name: token
+          schema:
+            description: jwt token returned when authenticating successfully
+            type: string
+      responses:
+        '200':
+          description: user get by id response
+          content:
+            application/json:
+              schema:
+                description: user schema
+                type: object
+                properties:
+                  id:
+                    description: user id in uuid format
+                    type: string
+                    pattern: >-
+                      ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+                  username:
+                    description: user name
+                    type: string
+                    minLength: 3
+                    maxLength: 15
+                    pattern: ^([A-Za-z0-9!?_]){3,15}$
+                additionalProperties: false
+                required:
+                  - id
+                  - username
+        '400':
+          description: malformed request
+        '401':
+          description: unauthorized request
+        '403':
+          description: not allowed
+        '404':
+          description: user not found
+        '500':
+          description: server error
+components:
+  schemas:
+    user:
+      description: user schema
+      type: object
+      properties:
+        id:
+          description: user id in uuid format
+          type: string
+          pattern: >-
+            ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+        username:
+          description: user name
+          type: string
+          minLength: 3
+          maxLength: 15
+          pattern: ^([A-Za-z0-9!?_]){3,15}$
+      additionalProperties: false
+      required:
+        - id
+        - username
+    password:
+      description: password
+      type: string
+      minLength: 8
+      maxLength: 15
+      pattern: ^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!?#_&@]).{8,15}$
+    token:
+      description: jwt token returned when authenticating successfully
+      type: string
