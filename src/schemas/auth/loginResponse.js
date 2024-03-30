@@ -1,10 +1,4 @@
-export const token = {
-  description: 'jwt token returned when authenticating successfully',
-  type: 'string',
-  errorMessages: {
-    type: 'must be a string',
-  },
-};
+import token from '../generic/auth';
 
 export const loginResponse = {
   token,

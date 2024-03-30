@@ -1,8 +1,7 @@
-import { login } from './endpoints/auth/login';
-import { userGet } from './endpoints/user/userGet';
-import { loginRequest } from './schemas/auth/loginRequest';
-import { loginResponse } from './schemas/auth/loginResponse';
-import { userGetResponse } from './schemas/user/userGetResponse';
+import { login } from './paths/auth/login';
+import { userGet } from './paths/users/users';
+import { password, token } from './schemas/generic/auth';
+import { user } from './schemas/user/user';
 
 export const openapi = {
   openapi: '3.0.0',
@@ -29,9 +28,9 @@ export const openapi = {
   },
   components: {
     schemas: {
-      loginRequest,
-      loginResponse,
-      userGetResponse,
+      user,
+      password,
+      token,
     },
   },
 };
