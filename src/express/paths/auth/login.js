@@ -1,5 +1,5 @@
-import { jsonRequest } from '../../openapiUtils/jsonRequest.js';
-import { jsonResponse } from '../../openapiUtils/jsonResponse.js';
+import { jsonRequest } from '../../../openapiUtils/jsonRequest.js';
+import { jsonResponse } from '../../../openapiUtils/jsonResponse.js';
 import { loginRequest } from '../../schemas/auth/loginRequest.js';
 import { loginResponse } from '../../schemas/auth/loginResponse.js';
 

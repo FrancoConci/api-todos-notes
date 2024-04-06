@@ -4,10 +4,10 @@ import { compile } from 'json-schema-to-typescript';
 import { openapi } from './openapi.js';
 
 // Create Openapi yaml
-writeFileSync('./output.yml', dump(openapi, { noRefs: true }), { encoding: 'utf8' });
+writeFileSync('./src/express/output.yml', dump(openapi, { noRefs: true }), { encoding: 'utf8' });
 
 // Recreate types index and set a writer to it
-const typesPath = './src/types/index.ts';
+const typesPath = './src/express/types/index.ts';
 rmSync(typesPath, { force: true });
 writeFileSync(typesPath, '', { encoding: 'utf8' });
 const writer = createWriteStream(typesPath);

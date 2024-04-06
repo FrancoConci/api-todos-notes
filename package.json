@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Api specification and types to use with todos-notes app.",
   "scripts": {
-    "generate": "node src/index.js"
+    "generate:express": "node src/express/index.js"
   },
   "main": "index.js",
   "author": "Franco Conci",

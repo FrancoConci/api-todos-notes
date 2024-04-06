@@ -1,4 +1,4 @@
-import { jsonResponse } from '../../openapiUtils/jsonResponse.js';
+import { jsonResponse } from '../../../openapiUtils/jsonResponse.js';
 import { token } from '../../schemas/generic/auth.js';
 import { user } from '../../schemas/user/user.js';
 

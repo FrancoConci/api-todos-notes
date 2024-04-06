@@ -1,11 +1,11 @@
-import { cleanSchema } from './openapiUtils/cleanSchema.js';
+import { cleanSchema } from '../openapiUtils/cleanSchema.js';
 import { login } from './paths/auth/login.js';
 import { userGet } from './paths/users/users.js';
 import { password, token } from './schemas/generic/auth.js';
 import { user } from './schemas/user/user.js';
 
 export const openapi = {
-  openapi: '3.0.0',
+  openapi: '3.1.0',
   servers: [
     {
       description: 'todo',
@@ -24,8 +24,8 @@ export const openapi = {
       '### Introduction\n  Endpoints specifications and data structures for Todo API\\\n',
   },
   paths: {
-    '/auth/login': cleanSchema(login),
-    '/users/{id}': cleanSchema(userGet),
+    '/api/auth/login': cleanSchema(login),
+    '/api/users/{id}': cleanSchema(userGet),
   },
   components: {
     schemas: {
