@@ -1,4 +1,4 @@
-import { token } from '../../../../generic/auth.js';
+import { token } from '../../../generic/auth.js';
 
 export const loginResponse = {
   type: 'object',

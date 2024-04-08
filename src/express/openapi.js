@@ -1,7 +1,7 @@
 import { cleanSchema } from '../openapiUtils/cleanSchema.js';
 import { login } from './paths/auth/login.js';
 import { userGet } from './paths/users/users.js';
-import { password, token } from '../../generic/auth.js';
+import { password, token } from '../generic/auth.js';
 import { user } from './schemas/user/user.js';
 
 export const openapi = {
