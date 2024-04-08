@@ -1,0 +1,129 @@
+openapi: 3.1.0
+servers:
+  - description: auth
+    url: http://localhost:3000/
+info:
+  contact:
+    name: Franco
+    email: franco1conci@gmail.com
+    url: https://www.linkedin.com/in/franco-conci/
+  version: 0.0.1
+  title: Auth api
+  description: |
+    ### Introduction
+      Endpoints specifications and data structures for Auth server api\
+paths:
+  /api/clients:
+    post:
+      tags:
+        - Client
+      summary: Client registration
+      requestBody:
+        description: client request
+        content:
+          application/json:
+            schema:
+              properties:
+                clientType:
+                  type: string
+                  description: Client type as described by rfc6749
+                  enum:
+                    - confidential
+                    - public
+                redirectUrl:
+                  type: string
+                  description: Redirect url as specified by rfc6749
+                scopes:
+                  type: array
+                  description: List of available scopes
+                  minItems: 1
+                  maxItems: 100
+                  items:
+                    type: string
+                    description: Application scope
+                applicationName:
+                  type: string
+                  description: Application name
+                  minLength: 1
+                  maxLength: 256
+                ApplicationUrl:
+                  type: string
+                  description: Application Url
+                  minLength: 1
+                  maxLength: 256
+                description:
+                  type: string
+                  description: Application description
+                  minLength: 1
+                  maxLength: 524
+                logo:
+                  type: string
+                  description: Application logo encoded in base64
+              required:
+                - clientType
+                - redirectUrl
+                - scopes
+              additionalProperties: false
+      responses:
+        '200':
+          description: client response
+          content:
+            application/json:
+              schema:
+                id:
+                  description: entity id in uuid format
+                  type: string
+                  pattern: >-
+                    ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+        '400':
+          description: malformed request
+        '401':
+          description: unauthorized
+        '409':
+          description: conflicted request
+        '500':
+          description: server error
+components:
+  schemas:
+    client:
+      properties:
+        clientType:
+          type: string
+          description: Client type as described by rfc6749
+          enum:
+            - confidential
+            - public
+        redirectUrl:
+          type: string
+          description: Redirect url as specified by rfc6749
+        scopes:
+          type: array
+          description: List of available scopes
+          minItems: 1
+          maxItems: 100
+          items:
+            type: string
+            description: Application scope
+        applicationName:
+          type: string
+          description: Application name
+          minLength: 1
+          maxLength: 256
+        ApplicationUrl:
+          type: string
+          description: Application Url
+          minLength: 1
+          maxLength: 256
+        description:
+          type: string
+          description: Application description
+          minLength: 1
+          maxLength: 524
+        logo:
+          type: string
+          description: Application logo encoded in base64
+      required:
+        - clientType
+        - redirectUrl
+        - scopes
+      additionalProperties: false
