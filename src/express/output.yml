@@ -72,7 +72,7 @@ paths:
           schema:
             properties:
               id:
-                description: user id in uuid format
+                description: entity id in uuid format
                 type: string
                 pattern: >-
                   ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -91,11 +91,6 @@ paths:
                 description: user schema
                 type: object
                 properties:
-                  id:
-                    description: user id in uuid format
-                    type: string
-                    pattern: >-
-                      ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
                   username:
                     description: user name
                     type: string
@@ -104,7 +99,6 @@ paths:
                     pattern: ^([A-Za-z0-9!?_]){3,15}$
                 additionalProperties: false
                 required:
-                  - id
                   - username
         '400':
           description: malformed request
@@ -122,11 +116,6 @@ components:
       description: user schema
       type: object
       properties:
-        id:
-          description: user id in uuid format
-          type: string
-          pattern: >-
-            ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
         username:
           description: user name
           type: string
@@ -135,7 +124,6 @@ components:
           pattern: ^([A-Za-z0-9!?_]){3,15}$
       additionalProperties: false
       required:
-        - id
         - username
     password:
       description: password

@@ -3,10 +3,6 @@
  */
 export interface User {
   /**
-   * user id in uuid format
-   */
-  id: string;
-  /**
    * user name
    */
   username: string;

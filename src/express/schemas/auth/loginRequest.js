@@ -1,5 +1,5 @@
 import { user } from '../user/user.js';
-import { password } from '../generic/auth.js';
+import { password } from '../../../../generic/auth.js';
 
 export const loginRequest = {
   properties: {

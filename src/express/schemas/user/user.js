@@ -2,17 +2,6 @@ export const user = {
   description: 'user schema',
   type: 'object',
   properties: {
-    id: {
-      description: 'user id in uuid format',
-      type: 'string',
-      pattern:
-        '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$',
-      errorMessages: {
-        type: 'must be a string',
-        length: 'must be 12 characters long',
-        pattern: 'must be a valid UUIDv4',
-      },
-    },
     username: {
       description: 'user name',
       type: 'string',
@@ -28,7 +17,7 @@ export const user = {
     },
   },
   additionalProperties: false,
-  required: ['id', 'username'],
+  required: ['username'],
   errorMessages: {
     type: 'must be an object',
     required: 'properties are missing',
