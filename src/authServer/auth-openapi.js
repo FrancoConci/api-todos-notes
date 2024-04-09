@@ -1,5 +1,7 @@
+import { code } from '../generic/auth.js';
 import { cleanSchema } from '../openapiUtils/cleanSchema.js';
 import { clients } from './paths/clients/clients.js';
+import { codes } from './paths/codes/codes.js';
 import { client } from './schemas/clients/components.js';
 
 export const authOpenapi = {
@@ -25,8 +27,7 @@ export const authOpenapi = {
     // Register client
     '/api/clients': cleanSchema(clients),
     // Exchange code
-    //TODO
-    // '/api/code': cleanSchema(code),
+    '/api/code': cleanSchema(codes),
     // Authorize requests
     // TODO
     // '/auth': cleanSchema(auth),
@@ -37,6 +38,7 @@ export const authOpenapi = {
   components: {
     schemas: {
       client: cleanSchema(client),
+      code: cleanSchema(code),
     },
   },
 };

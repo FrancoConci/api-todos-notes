@@ -31,3 +31,7 @@ export interface Client {
    */
   logo?: string;
 }
+/**
+ * Code to exchange for an auth token
+ */
+export type Code = string;

@@ -20,3 +20,19 @@ export const token = {
     type: 'must be a string',
   },
 };
+
+export const code = {
+  description: 'Code to exchange for an auth token',
+  type: 'string',
+  errorMessages: {
+    type: 'must be a string',
+  },
+};
+
+export const grantType = {
+  description: 'Grant type ',
+  enum: ['authorization_code', 'refresh_token', 'password', 'client_credentials'],
+  errorMessages: {
+    type: 'must be one of authorization_code, refresh_token, password, client_credentials',
+  },
+};
