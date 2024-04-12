@@ -2,7 +2,7 @@ import { code, grantType } from '../../../generic/auth.js';
 import { id } from '../../../generic/entity.js';
 import { jsonResponse } from '../../../openapiUtils/jsonResponse.js';
 import { client } from '../../schemas/clients/components.js';
-import { codeResponse } from '../../schemas/codes/components.js';
+import { tokenResponse } from '../../schemas/tokens/components.js';
 
 export const codes = {
   get: {
@@ -39,7 +39,7 @@ export const codes = {
       },
     ],
     responses: {
-      302: codeResponse,
+      200: jsonResponse(tokenResponse, 'Token response'),
       500: jsonResponse(null, 'server error'),
     },
   },

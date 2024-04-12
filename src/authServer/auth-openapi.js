@@ -1,5 +1,6 @@
 import { code } from '../generic/auth.js';
 import { cleanSchema } from '../openapiUtils/cleanSchema.js';
+import { auth } from './paths/auth/auth.js';
 import { clients } from './paths/clients/clients.js';
 import { codes } from './paths/codes/codes.js';
 import { client } from './schemas/clients/components.js';
@@ -30,7 +31,7 @@ export const authOpenapi = {
     '/api/code': cleanSchema(codes),
     // Authorize requests
     // TODO
-    // '/auth': cleanSchema(auth),
+    '/auth': cleanSchema(auth),
     // User management
     // TODO
     // '/signup': cleanSchema(signup),

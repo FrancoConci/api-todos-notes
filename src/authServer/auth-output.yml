@@ -133,18 +133,109 @@ paths:
                 type: string
           required: true
       responses:
+        '200':
+          description: Token response
+          content:
+            application/json:
+              schema:
+                description: Token response
+                properties:
+                  access_token:
+                    description: jwt token returned when authenticating successfully
+                    type: string
+                  token_type:
+                    type: string
+                    description: Token type and how to use it
+                  scope:
+                    type: array
+                    description: List of available scopes
+                    minItems: 1
+                    maxItems: 100
+                    items:
+                      type: string
+                      description: Application scope
+                  expires_in:
+                    type: string
+                    description: Expiration timer in ms
+                    pattern: ^([1-9]){1}(([0-9]){0,6})?$
+                    minLength: 1
+                    maxLength: 256
+                  state:
+                    type: string
+                    description: >-
+                      State as sent via the request. Required only if it had
+                      been sent by the request
+                    minLength: 1
+                    maxLength: 256
+                required:
+                  - token_type
+                  - scope
+                  - expires_in
+                additionalProperties: false
+        '500':
+          description: server error
+  /auth:
+    get:
+      tags:
+        - Auth
+      summary: Auth endpoint
+      parameters:
+        - in: query
+          name: response_type
+          description: Expected response type
+          schema:
+            type: string
+            enum:
+              - code
+          required: true
+        - in: query
+          name: client_id
+          description: Client id
+          schema:
+            properties:
+              id:
+                description: entity id in uuid format
+                type: string
+                pattern: >-
+                  ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89AB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+          required: true
+        - in: query
+          name: redirect_uri
+          description: Redirect URI
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: scope
+          description: Scope
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: state
+          description: Application-defined state
+          schema:
+            type: string
+          required: false
+      responses:
         '302':
           description: Code response
-          headers:
-            Location:
-              description: URI the user will be redirected to in order to request the token
+          content:
+            application/json:
               schema:
-                type: string
-                examples:
-                  - >-
-                    https://www.example.com/somepath?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
-                  - >-
-                    https://www.example.com/somepath?error=invalid_request&error_description=description&error_uri=example&state=xzy
+                description: Code response
+                headers:
+                  Location:
+                    description: >-
+                      URI the user will be redirected to in order to request the
+                      token
+                    schema:
+                      type: string
+                      examples:
+                        - >-
+                          https://www.example.com/somepath?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+                        - >-
+                          https://www.example.com/somepath?error=invalid_request&error_description=description&error_uri=example&state=xzy
         '500':
           description: server error
 components:
